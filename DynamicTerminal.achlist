@@ -1,0 +1,11 @@
+[
+	"Data\\Scripts\\DynamicTerminal\\Builder\\Component.pex",
+	"Data\\Scripts\\DynamicTerminal\\Builder\\Menu.pex",
+	"Data\\Scripts\\DynamicTerminal\\ListWrapper\\DynamicArray.pex",
+	"Data\\Scripts\\DynamicTerminal\\ListWrapper\\FormArray.pex",
+	"Data\\Scripts\\DynamicTerminal\\ListWrapper\\FormList.pex",
+	"Data\\Scripts\\DynamicTerminal\\Basic.pex",
+	"Data\\Scripts\\DynamicTerminal\\ListWrapper.pex",
+	"Data\\Scripts\\DynamicTerminal\\PaginationProxy.pex",
+	"Data\\Scripts\\DynamicTerminal\\Paginator.pex"
+]
