@@ -1,0 +1,17 @@
+Dynamic Terminal is a Papyrus script library inspired by the functionality of Settlement Management Software by matzman666.  Dynamic Terminal enables a modder to quickly and reliably script behavior which enables dynamic form substitution into a terminal as well as selection of a form off of a paginated list.  A unique blending of the two was also included in the library which allows a modder to define a series of option selections which can be combined to produce a result depending on the options selected in each step.
+
+Do note that due to restrictions of the game engine, these dynamic terminals cannot be displayed on the Pip-Boy.
+
+Do not download and/or activate this mod unless another modder has expressly said to do so either because they did not bundle it with their mod or else because a bug has been discovered and the updated version of Dynamic Terminal has yet to make it into their mod.  If you're installing Dynamic Terminal because of a bugfix update, place it in your load order after any mods containing the bugged version of this library.
+
+-
+
+If you want to use Dynamic Terminal in one of your mods, find the developer tools and loose files on the Nexus which you may use and explore in the Creation Kit as well as suggestions for how to proceed with incorporating Dynamic Terminal into your project.
+
+-
+
+If you want to use Dynamic Terminal in one of your mods, download and install the Dynamic Terminal Testing package which includes the loose files.  Open the DynamicTerminalTesting.esp file in the Creation Kit and familiarize yourself with its contents.  The Dynamic Terminal Testing mod was created to examine the functionality of the features provided by Dynamic Terminal.  A useful side-effect of the testing package is that a modder can examine how it makes use of the Dynamic Terminal library.  If you're curious to see Dynamic Terminal in action, enable the DynamicTerminalTesting.esp file in your Fallout 4 installation.  Then, run the game and enter the command “coc dynamicterminaltesting” in the console.  It's best if you don't save any games with the DynamicTerminalTesting plugin enabled since it's not intended to provide any actual functionality.
+
+Make special note of the use of the Proxy and ComponentProxy scripts and Terminals and how they're contstructed and used.  In development of this library and the mods which use it, the repetitious terminal creation and terminal fragment script programming were done away with as much as possible by the creation of the proxy logic.  This pattern should be observed by those wishing to use Dynamic Terminal in those mod so that they do not spend absurd amounts of time re-creating something that has nothing unique outside of a different editor ID.
+
+It is best practice to bundle the Dynamic Terminal scripts with your plugin's main.ba2 file so that messing with extra plugins or loose files isn't put upon the end user. In cases where you cannot or will not do so, you should direct your users to this plugin so they know to download and install it.  The testing package has all the scripts (both source and compiled) as well as an archive list so you know for a fact which files you'll need to include in your archive files.  The best use of this archive list is to add its contents to the archive list for your plugin so that you're sure the Creation Kit bundles everything you need for your plugin unless you prefer to let the Creation Kit show you which files are needed for your package.
