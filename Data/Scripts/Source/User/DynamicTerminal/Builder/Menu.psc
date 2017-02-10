@@ -4,7 +4,7 @@ For these purposes, a "builder" builds (in the sense that a process has steps wh
 A menu can be linear (the default behavior) where each component's options are known prior to run-time or mutable (which is set by the HasMutableOptions property being true) which clears the option sets along with state.
 A mutable menu is useful when one of the component values needs to change the options available for subsequnet components.  If using a mutable menu, be sure to set the first component's FirstOfMutable property to true and set it's Options in the editor.}
 
-DynamicTerminal:Builder:Component[] Property Components Auto Const
+DynamicTerminal:Builder:Component[] Property Components Auto Const Mandatory
 {The Components are the paginators used to select specific options for each step of the build.}
 Message Property ComponentNA Auto Const
 {Token replacement value for components - particularly in mutable builders - for when a component ends up not having any options.}
@@ -37,6 +37,7 @@ EndFunction
 
 Function clearState()
 {Call this when the build process is complete or when the terminal has been told by the user to reset the component value selections.}
+	DynamicTerminal:Logger:Builder.logClear(self)
 	setCanBuild(false)
 	
 	Int iCounter = 0
@@ -87,12 +88,15 @@ EndFunction
 
 Function buildLogic()
 {Override this behavior to complete the build process and do whatever it is you want done with the components and their values.  Be sure to call clearState() when done doing whatever it is you're going to do so that the terminal resets itself nicely.}
+	DynamicTerminal:Logger:Builder.logNoBuildLogic(self)
 EndFunction
 
 Function build()
 	if (!canBuild())
 		return ; paranoia, defensive programming, etc.
 	endif
+	
+	DynamicTerminal:Logger:Builder.logBuild(self)
 	
 	preBuild()
 	buildLogic()

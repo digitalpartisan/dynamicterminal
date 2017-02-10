@@ -24,24 +24,6 @@ Int iPageOffset = 0 Conditional ; number of items in the list which are displaye
 
 DynamicTerminal:PaginationProxy myProxy = None ; the proxy object (if any) to update when relevant behavior occurs.
 
-Function log(String sMessage)
-	Debug.Trace("[DynamicTerminal][Paginator] " + self + " " + sMessage)
-EndFunction
-
-Function logState(String sEvent)
-	String sMessage = sEvent + " with values:"
-	sMessage += " using pipboy: " + isUsingPipBoy()
-	sMessage += " has data: " + bHasData
-	sMessage += " list size: " + iListSize
-	sMessage += " show previous: " + bShowPrevious
-	sMessage += " show next: " + bShowNext
-	sMessage += " current page: " + iCurrentPage
-	sMessage += " page offset: " + iPageOffset
-	sMessage += " page items: " + iPageItems
-	
-	log(sMessage)
-EndFunction
-
 DynamicTerminal:ListWrapper Function getData()
 	return myData
 EndFunction
@@ -240,12 +222,12 @@ Function updatePageVariables()
 		iPageItems -= (iLastItemNumber - iListSize) ; subtract the shortfall from the maximum so that blank options are not displayed on the terminal
 	endif
 	
-	logState("updated page variables")
+	DynamicTerminal:Logger:Paginator.logState(self, "udpated page variables")
 EndFunction
 
 Function preReplacement()
 	if (myData.bRefreshFilterOnDraw)
-		Debug.Trace("[DynamicTerminal][Paginator] refreshing filter on draw " + myData + " in " + self)
+		DynamicTerminal:Logger:Paginator.logDataFilter(self, "draw event")
 		myData.filter()
 	endif
 	updatePageVariables() ; always calculate the page and its data before performing token replacements
@@ -271,7 +253,7 @@ EndFunction
 Function paginate(ObjectReference akTerminalRef, DynamicTerminal:ListWrapper wrapper)
 	myData = wrapper
 	if (myData.bFilterOnPagination)
-		Debug.Trace("[DynamicTerminal][Paginator] auto-filtering list on pagination: " + myData)
+		DynamicTerminal:Logger:Paginator.logDataFilter(self, "paginate event")
 		myData.freshFilter()
 	endif
 	iCurrentPage = 1 ;there may or may not be data, but let's let the pagination logic sort that out
@@ -280,7 +262,8 @@ EndFunction
 
 Function init(ObjectReference akTerminalRef, DynamicTerminal:ListWrapper wrapper, DynamicTerminal:PaginationProxy proxyObject = None)
 {Entry point for paginating a list on a terminal, causes the first page of data in the wrapper to be drawn to the terminal reference provided.  Best called from a terminal item's fragment script}
-	Debug.Trace("[DynamicTerminal][Paginator] Initialized " + self + " with dataset " + wrapper)
+	DynamicTerminal:Logger:Paginator.logInitialization(self, wrapper, proxyObject)
+	
 	clearProxy()
 	prePaginate()
 	setProxy(proxyObject)

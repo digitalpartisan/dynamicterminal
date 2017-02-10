@@ -11,19 +11,24 @@ Bool bShowPrevious = false Conditional ; see DynamicTerminal:Paginator
 Bool bShowNext = false Conditional ; see DynamicTerminal:Paginator
 Int iPageItems = 0 Conditional ; see DynamicTerminal:Paginator
 
-Function log(String sMessage)
-	Debug.Trace("[DynamicTerminal][PaginationProxy] " + self + " " + sMessage)
+Bool Function isUsingPipboy()
+	return bUsingPipboy
 EndFunction
 
-Function logState(String sEvent)
-	String sMessage = sEvent + " with values:"
-	sMessage += " using pipboy: " + bUsingPipboy
-	sMessage += " has data: " + bHasData
-	sMessage += " show previous: " + bShowPrevious
-	sMessage += " show next: " + bShowNext
-	sMessage += " page items: " + iPageItems
-	
-	log(sMessage)
+Bool Function hasData()
+	return bHasData
+EndFunction
+
+Bool Function showPrevious()
+	return bShowPrevious
+EndFunction
+
+Bool Function showNext()
+	return bShowNext
+EndFunction
+
+Int Function getPageItems()
+	return iPageItems
 EndFunction
 
 DynamicTerminal:Paginator Function getPaginator()
@@ -42,7 +47,8 @@ Function refreshProxyVariables(String sPaginatorAction = "")
 	if ("" != sPaginatorAction)
 		sEventMessage += " on " + sPaginatorAction
 	endif
-	logState(sEventMessage)
+	
+	DynamicTerminal:Logger:PaginationProxy.logState(self, sEventMessage)
 EndFunction
 
 Function init(ObjectReference akTerminalRef, DynamicTerminal:Paginator myPaginator, DynamicTerminal:ListWrapper dataWrapper)
