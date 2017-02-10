@@ -2,9 +2,9 @@ Scriptname DynamicTerminal:Builder:Component extends DynamicTerminal:Paginator C
 {Used in builder terminals to present the choices for a specific item required in the build process.  No extension is generally required because the activate() behavior is provided and redirected back to the builder.}
 
 Bool Property FirstOfMutable = false Auto Const
-DynamicTerminal:Builder:Menu Property Menu Auto Const
+DynamicTerminal:Builder:Menu Property Menu Auto Const Mandatory
 {The builder this belongs to.  Required to set the component's value and redraw the menu on the terminal in use.}
-String Property Token Auto Const
+String Property Token Auto Const Mandatory
 {Having the token name here enables automatic replacement when this component's value has been set in the menu.  Cuts down on boilerplate code.}
 DynamicTerminal:ListWrapper Property Options = None Auto
 {The options required for populating a paginated list for selecting this component's value}
@@ -36,8 +36,9 @@ Bool Function hasValue()
 	return fValue != None
 EndFunction
 
-Function setValue(Form value)
-	fValue = value
+Function setValue(Form fNewValue)
+	DynamicTerminal:Logger:Component.logSetValue(self, fNewValue)
+	fValue = fNewValue
 EndFunction
 
 Function clearValue()
@@ -57,6 +58,8 @@ Function setOptions(DynamicTerminal:ListWrapper newOptions)
 		return ; the menu isn't set to be mutable, so halt.  Options must be set in the editor and not programmatically
 	endif
 	
+	DynamicTerminal:Logger:Component.logSetOptions(self, newOptions)
+	
 	Options = newOptions
 	
 	if (Options == None || Options.getSize() == 0)
@@ -74,6 +77,7 @@ Function clearOptions()
 EndFunction
 
 Function clearState()
+	DynamicTerminal:Logger:Component.logClear(self)
 	clearValue()
 	markAvailable()
 	clearOptions()

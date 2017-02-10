@@ -1,6 +1,5 @@
-Scriptname DynamicTerminal:ListWrapper extends Quest
-{Do not attach this script in the editor.  In any other language, this would be an abstract class or an interface.
-Between a Form[] and a FormList, there are different means of determining list size and accessing individual items.
+Scriptname DynamicTerminal:ListWrapper extends Quest Hidden
+{Between a Form[] and a FormList, there are different means of determining list size and accessing individual items.
 This script defines the behaviors used by dynamic terminals - especially paginators - to access data without being aware of the sort of list it works on.}
 
 Bool Property bFilterOnPagination = false Auto Const
@@ -50,12 +49,13 @@ EndFunction
 
 Bool Function itemPassesFilter(Int iNumber)
 {Returns true if the item at location iNumber in the raw data specified in the editor should pass the filter.  Override to provide useful behavior to implement your desired filter logic.}
-	Debug.Trace("[DynamicTerminal][ListWrapper] Using passthrough filter behavior")
+	DynamicTerminal:Logger:ListWrapper.logPassthroughFilter(self)
 	return true
 EndFunction
 
 Function unfilter()
 {Undoes the filtering behavior and presents all data items in the original data set to be presented to pagination logic.}
+	DynamicTerminal:Logger:ListWrapper.logUnfilter(self)
 	bFiltered = false
 	filteredItems = new Form[0]
 EndFunction
@@ -72,7 +72,7 @@ Function filter()
 		iCounter += 1
 	EndWhile
 	
-	Debug.Trace("[DynamicTerminal][ListWrapper] filtered list " + self + " from size " + iSize + " to " + filteredItems.Length)
+	DynamicTerminal:Logger:ListWrapper.logFilterResult(self, iSize, filteredItems.Length)
 	bFiltered = true
 EndFunction
 

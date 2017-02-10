@@ -18,14 +18,15 @@ Function setTerminal(ObjectReference akTerminalRef = None)
 {Called when a draw or redraw is about to happen so that the right terminal is modified.  Mostly precautionary, but still.}
 	myTerminal = akTerminalRef
 	bUsingPipboy = myTerminal == None
+	DynamicTerminal:Logger.logTerminalRef(self)
 EndFunction
 
 Function replace(String token, Form fValue)
 {Pure convenience.  Not really required, but it makes child scripts very readable}
-	if (None == fValue)
-		return ; keep harmess yet incredibly verbose stack traces out of the logs
+	DynamicTerminal:Logger.logReplacement(self, token, fValue)
+	if (None != fValue) ; keep harmess yet incredibly verbose stack traces out of the logs
+		myTerminal.addTextReplacementData(token, fValue)
 	endif
-	myTerminal.addTextReplacementData(token, fValue)
 EndFunction
 
 Function preReplacement()
