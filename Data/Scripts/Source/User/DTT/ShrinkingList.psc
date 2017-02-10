@@ -4,7 +4,6 @@ Int iDecreaseBy = 0
 
 Function shrink()
 	iDecreaseBy += 1
-	Debug.Trace("[DynamicTerminalTesting] list shrunk, decrased by: " + iDecreaseBy)
 EndFunction
 
 Function unfilter()
