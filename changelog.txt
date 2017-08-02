@@ -1,6 +1,9 @@
-V1.1.0
- - Incorporated various script flags as needed for Papyrus optimizations
- - Integrated Loggout for improved debug logging.
+v1.2.0
+Implemented Dynamic Form List list wrapper type
+
+v1.1.0
+Incorporated various script flags as needed for Papyrus optimizations
+Integrated Loggout for improved debug logging.
 
 v1.0.0
- - Initial release
+Initial release
