@@ -1,3 +1,7 @@
+v1.3.0
+Added the ability to override Pagination item token prefixes without writing custom pagination scripts
+Added the ability to more easily nest Pagination terminals
+
 v1.2.0
 Implemented Dynamic Form List list wrapper type
 
