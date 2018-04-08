@@ -5,6 +5,9 @@ Int Property iFullPageSize = 12 Auto Const
 {The default value is based on the number of lines displayed in the game's terminals.  Lower this when attaching this script to an object in order to make room for body text as needed for a specific terminal.  Do not set it to any value less than three or else the pagination will not function.}
 Bool Property bRedrawAfterActivation = false Auto Const
 {Whether or not to automatically redraw the terminal after an item is activated.  Useful when the activation behavior may cause the contents of the terminal to change.}
+String Property OverrideTokenPrefix = "" Auto Const
+
+String sDefaultTokenPrefix = "Item" Const
 
 DynamicTerminal:ListWrapper myData ; the list used to populate the terminal pages
 
@@ -234,10 +237,15 @@ Function preReplacement()
 EndFunction
 
 Function tokenReplacementLogic()
-{This is default pagination behavior wherein each item token - named Item# - on a terminal page is replaced with the appropriate Form}
+{This is default pagination behavior wherein each item token on a terminal page is replaced with the appropriate Form}
+	String sPrefix = sDefaultTokenPrefix
+	if ("" != OverrideTokenPrefix)
+		sPrefix = OverrideTokenPrefix
+	endif
+
 	Int iCounter = 0
 	while (iCounter < iPageItems)
-		replace("Item" + iCounter, getItem(iCounter))
+		replace(sPrefix + iCounter, getItem(iCounter))
 		iCounter += 1
 	endwhile
 EndFunction
