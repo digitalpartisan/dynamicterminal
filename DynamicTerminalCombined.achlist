@@ -16,7 +16,7 @@
 	"Data\\Scripts\\DynamicTerminal\\Logger.pex",
 	"Data\\SCRIPTS\\DynamicTerminal\\PaginationProxy.pex",
 	"Data\\SCRIPTS\\DynamicTerminal\\Paginator.pex",
-	"Data\\Scripts\\DynamicTerminal\\paginator\\Nested\\DynamicArray.pex"
+	"Data\\Scripts\\DynamicTerminal\\paginator\\Nested\\DynamicArray.pex",
 	"Data\\Scripts\\DynamicTerminal\\paginator\\Nested\\DynamicList.pex",
 	"Data\\Scripts\\DynamicTerminal\\paginator\\Nested.pex"
 ]
