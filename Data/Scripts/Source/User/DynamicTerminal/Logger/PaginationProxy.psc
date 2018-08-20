@@ -18,13 +18,18 @@ Bool Function error(String sMessage) Global
 	return Loggout.error(DynamicTerminal:Logger.getName(), sMessage, getTags())
 EndFunction
 
-Bool Function logState(DynamicTerminal:PaginationProxy myProxy, String sEvent) Global
-	String sMessage = myProxy + " " + sEvent + " with values "
-	sMessage += " using pipboy: " + myProxy.isUsingPipBoy()
-	sMessage += ", has data: " + myProxy.hasData()
-	sMessage += ", show previous: " + myProxy.showPrevious()
-	sMessage += ", show next: " + myProxy.showNext()
-	sMessage += ", page items: " + myProxy.getPageItems()
+Bool Function logState(DynamicTerminal:PaginationProxy proxy, DynamicTerminal:Paginator paginator, String sEvent) Global
+	String sMessage = proxy + " updated by paginator " + paginator + " "
+	
+	if ("" != sEvent)
+		sMessage += "on " + sEvent + " "
+	endif
+	
+	sMessage += "with values using pipboy: " + proxy.isUsingPipBoy()
+	sMessage += ", has data: " + proxy.hasData()
+	sMessage += ", show previous: " + proxy.showPrevious()
+	sMessage += ", show next: " + proxy.showNext()
+	sMessage += ", page items: " + proxy.getPageItems()
 	
 	return log(sMessage)
 EndFunction

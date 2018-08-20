@@ -43,12 +43,7 @@ Function refreshProxyVariables(String sPaginatorAction = "")
 	bShowNext = actualPaginator.showNext()
 	iPageItems = actualPaginator.getPageItems()
 	
-	String sEventMessage = "updated by paginator " + actualPaginator
-	if ("" != sPaginatorAction)
-		sEventMessage += " on " + sPaginatorAction
-	endif
-	
-	DynamicTerminal:Logger:PaginationProxy.logState(self, sEventMessage)
+	DynamicTerminal:Logger:PaginationProxy.logState(self, actualPaginator, sPaginatorAction)
 EndFunction
 
 Function init(ObjectReference akTerminalRef, DynamicTerminal:Paginator myPaginator, DynamicTerminal:ListWrapper dataWrapper)

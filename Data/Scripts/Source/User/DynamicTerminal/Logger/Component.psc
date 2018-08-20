@@ -23,12 +23,7 @@ Bool Function logClear(DynamicTerminal:Builder:Component myComponent) Global
 EndFunction
 
 Bool Function logSetOptions(DynamicTerminal:Builder:Component myComponent, DynamicTerminal:ListWrapper myOptions = None) Global
-	String sMessage = myComponent + " was given options " + myOptions
-	if (None != myOptions)
-		sMessage += " with " + myOptions.getSize() + " choice(s)"
-	endif
-	
-	return log(sMessage)
+	return log(Loggout.buildMessage(myComponent + " was given options " + myOptions, None == myOptions, "", " with " + myOptions.getSize() + " choice(s)"))
 EndFunction
 
 Bool Function logSetValue(DynamicTerminal:Builder:Component myComponent, Form fValue) Global
