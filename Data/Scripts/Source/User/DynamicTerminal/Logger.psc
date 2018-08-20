@@ -17,14 +17,7 @@ Bool Function error(String sMessage) Global
 EndFunction
 
 Bool Function logTerminalRef(DynamicTerminal:Basic terminalScript) Global
-	String sMessage = terminalScript + " is using "
-	if (terminalScript.isUsingPipBoy())
-		sMessage += "the pip-boy"
-	else
-		sMessage += " terminal " + terminalScript.getTerminal()
-	endif
-	
-	return log(sMessage)
+	return log(Loggout.buildMessage(terminalScript + " is using ", terminalScript.isUsingPipBoy(), "the pip-boy", "terminal " + terminalScript.getTerminal()))
 EndFunction
 
 Bool Function logReplacement(DynamicTerminal:Basic terminalScript, String sTokenName, Form fValue = None) Global

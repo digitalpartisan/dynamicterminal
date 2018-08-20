@@ -9,6 +9,15 @@ String Property OverrideTokenPrefix = "" Auto Const
 
 String sDefaultTokenPrefix = "Item" Const
 
+String sUserActionInitialization = "initialization" Const
+String sUserActionForward = "navigate forward" Const
+String sUserActionBackward = "navigate backward" Const
+String sUserActionActivation = "item activation" Const
+
+String sStateEventUpdatePage = "update page variables" Const
+String sStateEventDraw = "draw event" Const
+String sStateEventPaginate = "paginate event" Const
+
 DynamicTerminal:ListWrapper myData ; the list used to populate the terminal pages
 
 Bool bHasData = false Conditional ; Is there at least one item in the list
@@ -118,7 +127,7 @@ Function back(ObjectReference akTerminalRef)
 	preBack()
 	navigate(-1, akTerminalRef)
 	postBack()
-	updateProxy("navigate backwards")
+	updateProxy(sUserActionBackward)
 EndFunction
 
 Function preForward()
@@ -138,7 +147,7 @@ Function forward(ObjectReference akTerminalRef)
 	preForward()
 	navigate(1, akTerminalRef)
 	postForward()
-	updateProxy("navigate forwards")
+	updateProxy(sUserActionForward)
 EndFunction
 
 Function setNoDataState()
@@ -225,14 +234,15 @@ Function updatePageVariables()
 		iPageItems -= (iLastItemNumber - iListSize) ; subtract the shortfall from the maximum so that blank options are not displayed on the terminal
 	endif
 	
-	DynamicTerminal:Logger:Paginator.logState(self, "udpated page variables")
+	DynamicTerminal:Logger:Paginator.logState(self, sStateEventUpdatePage)
 EndFunction
 
 Function preReplacement()
 	if (myData.bRefreshFilterOnDraw)
-		DynamicTerminal:Logger:Paginator.logDataFilter(self, "draw event")
+		DynamicTerminal:Logger:Paginator.logDataFilter(self, sStateEventDraw)
 		myData.filter()
 	endif
+	
 	updatePageVariables() ; always calculate the page and its data before performing token replacements
 EndFunction
 
@@ -242,7 +252,7 @@ Function tokenReplacementLogic()
 	if ("" != OverrideTokenPrefix)
 		sPrefix = OverrideTokenPrefix
 	endif
-
+	
 	Int iCounter = 0
 	while (iCounter < iPageItems)
 		replace(sPrefix + iCounter, getItem(iCounter))
@@ -261,10 +271,12 @@ EndFunction
 Function paginate(ObjectReference akTerminalRef, DynamicTerminal:ListWrapper wrapper)
 	myData = wrapper
 	if (myData.bFilterOnPagination)
-		DynamicTerminal:Logger:Paginator.logDataFilter(self, "paginate event")
+		DynamicTerminal:Logger:Paginator.logDataFilter(self, sStateEventPaginate)
 		myData.freshFilter()
 	endif
+	
 	iCurrentPage = 1 ;there may or may not be data, but let's let the pagination logic sort that out
+	
 	draw(akTerminalRef)
 EndFunction
 
@@ -274,10 +286,12 @@ Function init(ObjectReference akTerminalRef, DynamicTerminal:ListWrapper wrapper
 	
 	clearProxy()
 	prePaginate()
+	
 	setProxy(proxyObject)
 	paginate(akTerminalRef, wrapper)
 	postPaginate()
-	updateProxy("initialization")
+	
+	updateProxy(sUserActionInitialization)
 EndFunction
 
 Function preActivate(Int iItem, ObjectReference akTerminalRef)
@@ -298,8 +312,10 @@ Function activate(Int iItem, ObjectReference akTerminalRef)
 	preActivate(iItem, akTerminalRef)
 	itemActivation(iItem, akTerminalRef)
 	postActivate(iItem, akTerminalRef)
+	
 	if (bRedrawAfterActivation)
 		draw(akTerminalRef)
 	endif
-	updateProxy("item activation")
+	
+	updateProxy(sUserActionActivation)
 EndFunction

@@ -1,3 +1,7 @@
+v1.4.0
+Integrated Loggout v1.1.0
+Internal debug and logging code adjustments
+
 v1.3.0
 Added the ability to override Pagination item token prefixes without writing custom pagination scripts
 Added the ability to more easily nest Pagination terminals
