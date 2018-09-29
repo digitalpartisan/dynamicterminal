@@ -1,0 +1,22 @@
+[
+	"Data\\Scripts\\Loggout.pex",
+	"Data\\Scripts\\DynamicTerminal\\Basic.pex",
+	"Data\\Scripts\\DynamicTerminal\\Builder\\Component.pex",
+	"Data\\Scripts\\DynamicTerminal\\Builder\\Menu.pex",
+	"Data\\Scripts\\DynamicTerminal\\ListWrapper\\DynamicArray.pex",
+	"Data\\Scripts\\DynamicTerminal\\ListWrapper\\DynamicList.pex",
+	"Data\\Scripts\\DynamicTerminal\\ListWrapper\\FormArray.pex",
+	"Data\\Scripts\\DynamicTerminal\\ListWrapper\\FormList.pex",
+	"Data\\Scripts\\DynamicTerminal\\ListWrapper.pex",
+	"Data\\Scripts\\DynamicTerminal\\Logger\\Builder.pex",
+	"Data\\Scripts\\DynamicTerminal\\Logger\\Component.pex",
+	"Data\\Scripts\\DynamicTerminal\\Logger\\ListWrapper.pex",
+	"Data\\Scripts\\DynamicTerminal\\Logger\\PaginationProxy.pex",
+	"Data\\Scripts\\DynamicTerminal\\Logger\\Paginator.pex",
+	"Data\\Scripts\\DynamicTerminal\\Logger.pex",
+	"Data\\Scripts\\DynamicTerminal\\PaginationProxy.pex",
+	"Data\\Scripts\\DynamicTerminal\\paginator\\Nested\\DynamicArray.pex",
+	"Data\\Scripts\\DynamicTerminal\\paginator\\Nested\\DynamicList.pex",
+	"Data\\Scripts\\DynamicTerminal\\paginator\\Nested.pex",
+	"Data\\Scripts\\DynamicTerminal\\Paginator.pex"
+]
