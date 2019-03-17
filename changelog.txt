@@ -1,3 +1,6 @@
+v1.5.1
+Switched to Jiffy to cimplify library dependencies
+
 v1.4.0
 Integrated Loggout v1.1.0
 Internal debug and logging code adjustments
