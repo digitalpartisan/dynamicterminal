@@ -3,6 +3,5 @@ Scriptname DTT:RandomArray extends dynamicterminal:listwrapper:DynamicArray
 FormList Property ListsToChooseFrom = None Auto Const Mandatory
 
 Function choose()
-	Int iIndex = Utility.RandomInt(0, ListsToChooseFrom.GetSize() - 1)
-	setData( ( ListsToChooseFrom.GetAt(iIndex) as DTT:ArrayWrapper ).myArray )
+	setData( (Jiffy:Utility.randomFromList(ListsToChooseFrom) as DTT:ArrayWrapper).myArray )
 EndFunction
