@@ -240,7 +240,7 @@ EndFunction
 Function preReplacement()
 	if (myData.bRefreshFilterOnDraw)
 		DynamicTerminal:Logger:Paginator.logDataFilter(self, sStateEventDraw)
-		myData.freshFilter()
+		myData.filter()
 	endif
 	
 	updatePageVariables() ; always calculate the page and its data before performing token replacements
