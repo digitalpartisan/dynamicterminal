@@ -1,4 +1,4 @@
-Scriptname dynamicterminal:logger:Builder Hidden Const DebugOnly
+Scriptname DynamicTerminal:Logger:Builder Hidden Const DebugOnly
 
 String[] Function getTags() Global
 	String[] tags = new String[0]
@@ -7,15 +7,15 @@ String[] Function getTags() Global
 EndFunction
 
 Bool Function log(String sMessage) Global
-	return Loggout.log(DynamicTerminal:Logger.getName(), sMessage, getTags())
+	return DynamicTerminal:Logger.log(sMessage, getTags())
 EndFunction
 
 Bool Function warn(String sMessage) Global
-	return Loggout.warn(DynamicTerminal:Logger.getName(), sMessage, getTags())
+	return DynamicTerminal:Logger.warn(sMessage, getTags())
 EndFunction
 
 Bool Function error(String sMessage) Global
-	return Loggout.error(DynamicTerminal:Logger.getName(), sMessage, getTags())
+	return DynamicTerminal:Logger.error(sMessage, getTags())
 EndFunction
 
 Bool Function logClear(DynamicTerminal:Builder:Menu myMenu) Global
