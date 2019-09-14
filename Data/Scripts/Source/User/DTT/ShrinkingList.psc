@@ -1,4 +1,4 @@
-Scriptname DTT:ShrinkingList extends DynamicTerminal:ListWrapper:FormList
+Scriptname DTT:ShrinkingList extends DynamicTerminal:ListWrapper:FormList:Static
 
 Int iDecreaseBy = 0
 

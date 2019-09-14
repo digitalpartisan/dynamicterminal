@@ -1,4 +1,4 @@
-Scriptname DynamicTerminal:Listwrapper:FormList extends DynamicTerminal:ListWrapper:FormList:Abstract Hidden
+Scriptname DynamicTerminal:ListWrapper:FormList extends DynamicTerminal:ListWrapper Hidden
 
 FormList Function getRawData()
 	return None

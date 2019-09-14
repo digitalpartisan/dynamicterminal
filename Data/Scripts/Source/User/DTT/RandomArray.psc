@@ -1,7 +1,7 @@
-Scriptname DTT:RandomArray extends dynamicterminal:listwrapper:DynamicArray
+Scriptname DTT:RandomArray extends DynamicTerminal:ListWrapper:FormArray:Dynamic
 
 FormList Property ListsToChooseFrom = None Auto Const Mandatory
 
 Function choose()
-	setData( (Jiffy:Utility.randomFromList(ListsToChooseFrom) as DTT:ArrayWrapper).myArray )
+	setData( (Jiffy:Utility:FormList.random(ListsToChooseFrom) as DTT:ArrayWrapper).myArray )
 EndFunction

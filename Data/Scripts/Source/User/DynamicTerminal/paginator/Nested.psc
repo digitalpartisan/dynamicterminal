@@ -1,9 +1,10 @@
-Scriptname DynamicTerminal:Paginator:Nested extends DynamicTerminal:Paginator Conditional
+Scriptname DynamicTerminal:Paginator:Nested extends DynamicTerminal:Paginator Hidden Conditional
 
 DynamicTerminal:Paginator Property NextPaginator Auto Const Mandatory
 
 DynamicTerminal:ListWrapper Function getListWrapper(Int iItemID)
-	return getItem(iItemID) as DynamicTerminal:ListWrapper
+{Override this function in child scripts to decide what data set populates the next paginator.}
+	return None
 EndFunction
 
 Function itemActivation(Int iItem, ObjectReference akTerminalRef)
