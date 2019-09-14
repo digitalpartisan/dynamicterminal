@@ -1,15 +1,16 @@
 Scriptname DynamicTerminal:ListWrapper:FormArray extends DynamicTerminal:ListWrapper
 {Use this script to wrap lists of type Form[] for use in a dynamic terminal.}
 
-Form[] Property myData Auto Const Mandatory
-{As this value cannot be programatically defined, it must be attached in the editor.}
+Form[] Function getRawData()
+	return None
+EndFunction
 
-int Function getRawDataSize()
+Int Function getRawDataSize()
 {See DynamicTerminal:ListWrapper.}
-	return myData.Length
+	return getRawData().Length
 EndFunction
 
 Form Function getRawDataItem(int iNumber)
 {See DynamicTerminal:ListWrapper.}
-	return myData[iNumber]
+	return getRawData()[iNumber]
 EndFunction

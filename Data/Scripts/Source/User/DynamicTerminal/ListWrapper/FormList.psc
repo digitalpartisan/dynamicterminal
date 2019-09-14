@@ -1,15 +1,15 @@
-Scriptname DynamicTerminal:Listwrapper:FormList extends DynamicTerminal:ListWrapper
-{Use this script to wrap lists of type FormList for use in a dynamic terminal.}
+Scriptname DynamicTerminal:Listwrapper:FormList extends DynamicTerminal:ListWrapper:FormList:Abstract Hidden
 
-FormList Property myData Auto Const Mandatory
-{As this value cannot be programatically defined, it must be attached in the editor.}
+FormList Function getRawData()
+	return None
+EndFunction
 
 Int Function getRawDataSize()
 {See DynamicTerminal:ListWrapper.}
-	return myData.getSize()
+	return getRawData().getSize()
 EndFunction
 
 Form Function getRawDataItem(int iNumber)
 {See DynamicTerminal:ListWrapper.}
-	return myData.getAt(iNumber)
+	return getRawData().getAt(iNumber)
 EndFunction
