@@ -1,6 +1,8 @@
 v1.5.0
 Switched to Jiffy to cimplify library dependencies
 Fixed a bug where filters on data lists were not reset on subsequent entries into a paginated terminal
+Refactored list wrapper scripts to be named consistently
+Refactored builder components to include their own list wrappers which simplified the builder configuration and required custom programming
 
 v1.4.0
 Integrated Loggout v1.1.0

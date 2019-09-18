@@ -29,6 +29,20 @@ Function updateLogic()
 	bHasHelmet = getComponent(iHelmetID).isComplete()
 EndFunction
 
+Function postUpdate()
+	if (!bHasSize)
+		getComponent(iSizeID).examineOptions()
+	endif
+	
+	if (!bHasMaterial)
+		getComponent(iMaterialID).examineOptions()
+	endif
+	
+	if (!bHasMaterial)
+		getComponent(iHelmetID).examineOptions()
+	endif
+EndFunction
+
 Function calculateCanBuild()
 	setCanBuild(bHasSize && bHasMaterial && bHasHelmet)
 EndFunction

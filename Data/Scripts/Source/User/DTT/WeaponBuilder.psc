@@ -25,18 +25,24 @@ Function clearState()
 	bHasMuzzle = false
 EndFunction
 
+Function setComponentOptions(Int iComponentID, Form[] dataSet)
+	DynamicTerminal:Builder:Component targetComponent = getComponent(iComponentID)
+	(targetComponent.getOptions() as DynamicTerminal:ListWrapper:FormArray:Dynamic).setData(dataSet)
+	targetComponent.examineOptions()
+EndFunction
+
 Function updateLogic()
 	if (!bHasType && getComponent(iTypeID).isComplete())
 		bHasType = true
 		DTT:WeaponOption weaponValue = getComponent(iTypeID).getValue() as DTT:WeaponOption
 
-		getComponent(iCapacitorID).setOptions(weaponValue.CapacitorOptions)
-		getComponent(iBarrelID).setOptions(weaponValue.BarrelOptions)
-		getComponent(iGripID).setOptions(weaponValue.GripOptions)
-		getComponent(iSightID).setOptions(weaponValue.SightOptions)
-		getComponent(iMuzzleID).setOptions(weaponValue.MuzzleOptions)
+		setComponentOptions(iCapacitorID, weaponValue.Capacitors)
+		setComponentOptions(iBarrelID, weaponValue.Barrels)
+		setComponentOptions(iGripID, weaponValue.Grips)
+		setComponentOptions(iSightID, weaponValue.Sights)
+		setComponentOptions(iMuzzleID, weaponValue.Muzzles)
 	endif
-
+	
 	bHasCapacitor = getComponent(iCapacitorID).isComplete()
 	bHasBarrel = getComponent(iBarrelID).isComplete()
 	bHasGrip = getComponent(iGripID).isComplete()

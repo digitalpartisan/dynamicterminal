@@ -8,10 +8,20 @@ DynamicTerminal:Builder:Component[] Property Components Auto Const Mandatory
 {The Components are the paginators used to select specific options for each step of the build.}
 Message Property ComponentNA Auto Const
 {Token replacement value for components - particularly in mutable builders - for when a component ends up not having any options.}
-Bool Property HasMutableOptions = false Auto Const
-{Setting this property to true will cause the options of components to be cleared out along with the menu's state.  If this is desirable, make sure to set the FirstOfMutable property - and the Options property - on the first component in the editor so that this menu does not become inoperable.}
 
 Bool bCanBuild = false Conditional ; whether or not the build terminal should display the option to execute the build() behavior
+
+Message Function getNAValue()
+	return ComponentNA
+EndFunction
+
+DynamicTerminal:Builder:Component[] Function getComponents()
+	return Components
+EndFunction
+
+DynamicTerminal:Builder:Component Function getComponent(Int iComponentID)
+	return Components[iComponentID]
+EndFunction
 
 Bool Function canBuild()
 	return bCanBuild
@@ -21,16 +31,13 @@ Function setCanBuild(Bool bValue)
 	bCanBuild = bValue
 EndFunction
 
-DynamicTerminal:Builder:Component Function getComponent(Int iComponentID)
-	return Components[iComponentID]
-EndFunction
-
 Function tokenReplacementLogic()
 {Make sure to set the Token property on each component since doing so will enable automatic token replacement with that component's value.}
 	Int iCounter = 0
+	DynamicTerminal:Builder:Component current = None
 	while (iCounter < Components.Length)
-		DynamicTerminal:Builder:Component menuComponent = getComponent(iCounter)
-		replace(menuComponent.Token, menuComponent.getValue())
+		current = getComponent(iCounter)
+		replace(current.getToken(), current.getValue())
 		iCounter += 1
 	endwhile
 EndFunction
@@ -42,7 +49,7 @@ Function clearState()
 	
 	Int iCounter = 0
 	while (iCounter < Components.Length)
-		Components[iCounter].clearState()
+		getComponent(iCounter).clearState()
 		iCounter += 1
 	endwhile
 EndFunction
@@ -108,5 +115,5 @@ EndFunction
 Function proxyComponent(ObjectReference akTerminalRef, DynamicTerminal:PaginationProxy Proxy, Int iComponentID)
 {Syntactical sugar.  Helps keep unnecessary properties and code out of terminal fragments.}
 	DynamicTerminal:Builder:Component menuComponent = getComponent(iComponentID)
-	Proxy.init(akTerminalRef, menuComponent, menuComponent.Options)
+	Proxy.init(akTerminalRef, menuComponent, menuComponent.getOptions())
 EndFunction
