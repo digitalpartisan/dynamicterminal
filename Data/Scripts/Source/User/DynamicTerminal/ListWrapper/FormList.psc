@@ -6,10 +6,20 @@ EndFunction
 
 Int Function getRawDataSize()
 {See DynamicTerminal:ListWrapper.}
-	return getRawData().getSize()
+	FormList rawData = getRawData()
+	if (!rawData)
+		return 0
+	endif
+	
+	return rawData.getSize()
 EndFunction
 
 Form Function getRawDataItem(int iNumber)
 {See DynamicTerminal:ListWrapper.}
-	return getRawData().getAt(iNumber)
+	FormList rawData = getRawData()
+	if (!rawData)
+		return None
+	endif
+	
+	return rawData.getAt(iNumber)
 EndFunction

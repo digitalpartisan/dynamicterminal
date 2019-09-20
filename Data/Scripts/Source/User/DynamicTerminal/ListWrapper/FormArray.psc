@@ -7,10 +7,20 @@ EndFunction
 
 Int Function getRawDataSize()
 {See DynamicTerminal:ListWrapper.}
-	return getRawData().Length
+	Form[] rawData = getRawData()
+	if (!rawData)
+		return 0
+	endif
+	
+	return rawData.Length
 EndFunction
 
 Form Function getRawDataItem(int iNumber)
 {See DynamicTerminal:ListWrapper.}
-	return getRawData()[iNumber]
+	Form[] rawData = getRawData()
+	if (!rawData)
+		return None
+	endif
+	
+	return rawData[iNumber]
 EndFunction
