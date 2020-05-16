@@ -246,6 +246,10 @@ Function preReplacement()
 	updatePageVariables() ; always calculate the page and its data before performing token replacements
 EndFunction
 
+Form Function getItemReplacementValue(Form rawItem)
+	return rawItem
+EndFunction
+
 Function tokenReplacementLogic()
 {This is default pagination behavior wherein each item token on a terminal page is replaced with the appropriate Form}
 	String sPrefix = sDefaultTokenPrefix
@@ -255,7 +259,7 @@ Function tokenReplacementLogic()
 	
 	Int iCounter = 0
 	while (iCounter < iPageItems)
-		replace(sPrefix + iCounter, getItem(iCounter))
+		replace(sPrefix + iCounter, getItemReplacementValue(getItem(iCounter)))
 		iCounter += 1
 	endwhile
 EndFunction
