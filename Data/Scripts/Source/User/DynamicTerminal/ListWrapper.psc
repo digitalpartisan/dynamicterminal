@@ -49,13 +49,13 @@ EndFunction
 
 Bool Function itemPassesFilter(Int iNumber)
 {Returns true if the item at location iNumber in the raw data specified in the editor should pass the filter.  Override to provide useful behavior to implement your desired filter logic.}
-	DynamicTerminal:Logger:ListWrapper.logPassthroughFilter(self)
+	DynamicTerminal:ListWrapper:Logger.logPassthroughFilter(self)
 	return true
 EndFunction
 
 Function unfilter()
 {Undoes the filtering behavior and presents all data items in the original data set to be presented to pagination logic.}
-	DynamicTerminal:Logger:ListWrapper.logUnfilter(self)
+	DynamicTerminal:ListWrapper:Logger.logUnfilter(self)
 	bFiltered = false
 	filteredItems = new Form[0]
 EndFunction
@@ -72,7 +72,7 @@ Function filter()
 		iCounter += 1
 	EndWhile
 	
-	DynamicTerminal:Logger:ListWrapper.logFilterResult(self, iSize, filteredItems.Length)
+	DynamicTerminal:ListWrapper:Logger.logFilterResult(self, iSize, filteredItems.Length)
 	bFiltered = true
 EndFunction
 

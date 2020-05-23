@@ -39,7 +39,7 @@ Bool Function hasValue()
 EndFunction
 
 Function setValue(Form fNewValue)
-	DynamicTerminal:Logger:Component.logSetValue(self, fNewValue)
+	DynamicTerminal:Builder:Component:Logger.logSetValue(self, fNewValue)
 	fValue = fNewValue
 EndFunction
 
@@ -65,7 +65,7 @@ Function examineOptions()
 EndFunction
 
 Function clearState()
-	DynamicTerminal:Logger:Component.logClear(self)
+	DynamicTerminal:Builder:Component:Logger.logClear(self)
 	clearValue()
 	markAvailable()
 EndFunction

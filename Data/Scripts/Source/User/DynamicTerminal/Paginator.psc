@@ -34,7 +34,7 @@ Int iCurrentPage = 0 Conditional ; number of the page being displayed, defaults 
 Int iPageItems = 0 Conditional ; number of items to display on the current page, no larger than iMaxPageItems
 Int iPageOffset = 0 Conditional ; number of items in the list which are displayed on pages before the current page
 
-DynamicTerminal:PaginationProxy myProxy = None ; the proxy object (if any) to update when relevant behavior occurs.
+DynamicTerminal:Paginator:Proxy myProxy = None ; the proxy object (if any) to update when relevant behavior occurs.
 
 DynamicTerminal:ListWrapper Function getData()
 	return myData
@@ -44,11 +44,11 @@ Function clearProxy()
 	myProxy = None
 EndFunction
 
-DynamicTerminal:PaginationProxy Function getProxy()
+DynamicTerminal:Paginator:Proxy Function getProxy()
 	return myProxy
 EndFunction
 
-Function setProxy(DynamicTerminal:PaginationProxy proxyObject)
+Function setProxy(DynamicTerminal:Paginator:Proxy proxyObject)
 	myProxy = proxyObject
 EndFunction
 
@@ -234,12 +234,12 @@ Function updatePageVariables()
 		iPageItems -= (iLastItemNumber - iListSize) ; subtract the shortfall from the maximum so that blank options are not displayed on the terminal
 	endif
 	
-	DynamicTerminal:Logger:Paginator.logState(self, sStateEventUpdatePage)
+	DynamicTerminal:Paginator:Logger.logState(self, sStateEventUpdatePage)
 EndFunction
 
 Function preReplacement()
 	if (myData.bRefreshFilterOnDraw)
-		DynamicTerminal:Logger:Paginator.logDataFilter(self, sStateEventDraw)
+		DynamicTerminal:Paginator:Logger.logDataFilter(self, sStateEventDraw)
 		myData.filter()
 	endif
 	
@@ -275,7 +275,7 @@ EndFunction
 Function paginate(ObjectReference akTerminalRef, DynamicTerminal:ListWrapper wrapper)
 	myData = wrapper
 	if (myData.bFilterOnPagination)
-		DynamicTerminal:Logger:Paginator.logDataFilter(self, sStateEventPaginate)
+		DynamicTerminal:Paginator:Logger.logDataFilter(self, sStateEventPaginate)
 		myData.freshFilter()
 	endif
 	
@@ -284,9 +284,9 @@ Function paginate(ObjectReference akTerminalRef, DynamicTerminal:ListWrapper wra
 	draw(akTerminalRef)
 EndFunction
 
-Function init(ObjectReference akTerminalRef, DynamicTerminal:ListWrapper wrapper, DynamicTerminal:PaginationProxy proxyObject = None)
+Function init(ObjectReference akTerminalRef, DynamicTerminal:ListWrapper wrapper, DynamicTerminal:Paginator:Proxy proxyObject = None)
 {Entry point for paginating a list on a terminal, causes the first page of data in the wrapper to be drawn to the terminal reference provided.  Best called from a terminal item's fragment script}
-	DynamicTerminal:Logger:Paginator.logInitialization(self, wrapper, proxyObject)
+	DynamicTerminal:Paginator:Logger.logInitialization(self, wrapper, proxyObject)
 	
 	clearProxy()
 	prePaginate()

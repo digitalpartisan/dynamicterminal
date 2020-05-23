@@ -1,14 +1,11 @@
 Scriptname DynamicTerminal:ListWrapper:FormList:ChronicleBehavior extends chronicle:package:custombehavior
 
+Jiffy:BackgroundProcessor:FormListCleaner Property BackgroundCleaner Auto Const Mandatory
 DynamicTerminal:ListWrapper:FormList[] Property ListWrappers Auto Const
 FormList Property ListOfListWrappers Auto Const
 
 Function processListWrapper(DynamicTerminal:ListWrapper:FormList targetList)
-	if (!targetList)
-		return
-	endif
-	
-	targetList.clean()
+	targetList && targetList.clean(BackgroundCleaner)
 EndFunction
 
 Function processListWrappers()
@@ -36,8 +33,18 @@ Function processListOfListWrappers()
 	endWhile
 EndFunction
 
+Bool Function installBehavior()
+	BackgroundCleaner.Start()
+	return true
+EndFunction
+
 Bool Function postloadBehavior()
 	processListWrappers()
 	processListOfListWrappers()
+	return true
+EndFunction
+
+Bool Function uninstallBehavior()
+	BackgroundCleaner.Stop()
 	return true
 EndFunction

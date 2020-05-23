@@ -24,6 +24,6 @@ Form Function getRawDataItem(int iNumber)
 	return rawData.getAt(iNumber)
 EndFunction
 
-Function clean()
-	Jiffy:Utility:FormList.clean(getRawData())
+Function clean(Jiffy:BackgroundProcessor:FormListCleaner cleaner)
+	cleaner.clean(getRawData())
 EndFunction

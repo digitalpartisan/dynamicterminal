@@ -12,7 +12,7 @@ EndFunction
 
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 
-DynamicTerminal:PaginationProxy Property Proxy Auto Const
+DynamicTerminal:Paginator:Proxy Property Proxy Auto Const
 
 DynamicTerminal:Paginator Property Paginator Auto Const
 

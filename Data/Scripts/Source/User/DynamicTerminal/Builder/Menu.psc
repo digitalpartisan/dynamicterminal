@@ -44,7 +44,7 @@ EndFunction
 
 Function clearState()
 {Call this when the build process is complete or when the terminal has been told by the user to reset the component value selections.}
-	DynamicTerminal:Logger:Builder.logClear(self)
+	DynamicTerminal:Builder:Logger.logClear(self)
 	setCanBuild(false)
 	
 	Int iCounter = 0
@@ -95,7 +95,7 @@ EndFunction
 
 Function buildLogic()
 {Override this behavior to complete the build process and do whatever it is you want done with the components and their values.  Be sure to call clearState() when done doing whatever it is you're going to do so that the terminal resets itself nicely.}
-	DynamicTerminal:Logger:Builder.logNoBuildLogic(self)
+	DynamicTerminal:Builder:Logger.logNoBuildLogic(self)
 EndFunction
 
 Function build()
@@ -103,7 +103,7 @@ Function build()
 		return ; paranoia, defensive programming, etc.
 	endif
 	
-	DynamicTerminal:Logger:Builder.logBuild(self)
+	DynamicTerminal:Builder:Logger.logBuild(self)
 	
 	preBuild()
 	buildLogic()
@@ -112,7 +112,7 @@ Function build()
 	clearState()
 EndFunction
 
-Function proxyComponent(ObjectReference akTerminalRef, DynamicTerminal:PaginationProxy Proxy, Int iComponentID)
+Function proxyComponent(ObjectReference akTerminalRef, DynamicTerminal:Paginator:Proxy Proxy, Int iComponentID)
 {Syntactical sugar.  Helps keep unnecessary properties and code out of terminal fragments.}
 	DynamicTerminal:Builder:Component menuComponent = getComponent(iComponentID)
 	Proxy.init(akTerminalRef, menuComponent, menuComponent.getOptions())
