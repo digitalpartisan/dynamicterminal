@@ -1,4 +1,4 @@
-Scriptname dynamicterminal:paginator:Proxy:Logger Hidden Const DebugOnly
+Scriptname DynamicTerminal:Paginator:Proxy:Logger Hidden Const DebugOnly
 
 String[] Function getTags() Global
 	String[] tags = new String[0]
