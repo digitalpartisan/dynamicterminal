@@ -1,4 +1,5 @@
 Scriptname DynamicTerminal:ListWrapper:FormList extends DynamicTerminal:ListWrapper Hidden
+{The generic type of ListWrapper that works on the forms in a FormList.  See DynamicTerminal:ListWrapper.}
 
 FormList Function getRawData()
 	return None

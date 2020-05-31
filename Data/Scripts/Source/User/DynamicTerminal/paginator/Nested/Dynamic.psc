@@ -1,1 +1,2 @@
 Scriptname DynamicTerminal:Paginator:Nested:Dynamic extends DynamicTerminal:Paginator:Nested Hidden Conditional
+{This script is to define the gerenic type for dynamic paginators.  See child scripts for use cases and contrast them against DynamicTerminal:Paginator:Nested:Static.}

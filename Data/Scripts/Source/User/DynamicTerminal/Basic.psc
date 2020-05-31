@@ -1,10 +1,5 @@
-Scriptname DynamicTerminal:Basic extends Quest Conditional
+Scriptname DynamicTerminal:Basic extends Quest Hidden Conditional
 {Extend this script to have easy access to dynamic token replacement and Pip-Boy detection behavior in a terminal.}
-
-Struct TokenValue
-	String Name
-	Form Value
-EndStruct
 
 ObjectReference myTerminal = None ; the terminal reference
 Bool bUsingPipboy = false Conditional ; is the terminal actually the pipboy (which cannot accept token replacements)
@@ -36,20 +31,6 @@ EndFunction
 
 Function preReplacement()
 {Event hook to allow logic prior to token replacement.  Override this to augment behavior.}
-EndFunction
-
-Function replaceTokenSet(TokenValue[] TokenSet)
-	if (!TokenSet)
-		return
-	endif
-	
-	Int iCounter = 0
-	TokenValue data = None
-	while (iCounter < TokenSet.Length)
-		data = TokenSet[iCounter]
-		replace(data.Name, data.Value)
-		iCounter += 1
-	endWhile
 EndFunction
 
 Function tokenReplacementLogic()

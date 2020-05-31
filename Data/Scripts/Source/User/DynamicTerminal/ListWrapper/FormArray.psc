@@ -1,4 +1,4 @@
-Scriptname DynamicTerminal:ListWrapper:FormArray extends DynamicTerminal:ListWrapper
+Scriptname DynamicTerminal:ListWrapper:FormArray extends DynamicTerminal:ListWrapper Hidden
 {Use this script to wrap lists of type Form[] for use in a dynamic terminal.}
 
 Form[] Function getRawData()

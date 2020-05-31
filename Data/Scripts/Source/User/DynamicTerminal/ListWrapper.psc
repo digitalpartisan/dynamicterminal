@@ -1,5 +1,6 @@
 Scriptname DynamicTerminal:ListWrapper extends Quest Hidden
-{Between a Form[] and a FormList, there are different means of determining list size and accessing individual items.
+{The generic type of ListWrapper which impelements the behaviors required by paginators to paginate items in the ListWrapper.
+Between a Form[] and a FormList, there are different means of determining list size and accessing individual items.
 This script defines the behaviors used by dynamic terminals - especially paginators - to access data without being aware of the sort of list it works on.}
 
 Bool Property bFilterOnPagination = false Auto Const
