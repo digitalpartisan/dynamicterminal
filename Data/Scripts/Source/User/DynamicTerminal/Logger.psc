@@ -5,15 +5,15 @@ String Function getName() Global
 EndFunction
 
 Bool Function log(String sMessage, String[] tags = None) Global
-	return Jiffy:Logger.log(sMessage, tags)
+	return Jiffy:Loggout.log(getName(), sMessage, tags)
 EndFunction
 
 Bool Function warn(String sMessage, String[] tags = None) Global
-	return Jiffy:Logger.warn(sMessage, tags)
+	return Jiffy:Loggout.warn(getName(), sMessage, tags)
 EndFunction
 
 Bool Function error(String sMessage, String[] tags = None) Global
-	return Jiffy:Logger.error(sMessage, tags)
+	return Jiffy:Loggout.error(getName(), sMessage, tags)
 EndFunction
 
 Bool Function logTerminalRef(DynamicTerminal:Basic terminalScript) Global
