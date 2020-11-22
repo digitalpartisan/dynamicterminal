@@ -31,6 +31,10 @@ DynamicTerminal:ListWrapper Function getOptions()
 EndFunction
 
 Form Function getValue()
+	if (!isAvailable())
+		return None
+	endif
+
 	return fValue
 EndFunction
 
@@ -48,11 +52,7 @@ Function clearValue()
 EndFunction
 
 Bool Function isComplete()
-	if (isAvailable())
-		return hasValue()
-	else
-		return true
-	endif
+	return (!isAvailable() || hasValue())
 EndFunction
 
 Function examineOptions()
