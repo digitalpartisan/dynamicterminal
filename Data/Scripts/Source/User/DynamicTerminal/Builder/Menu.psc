@@ -37,7 +37,12 @@ Function tokenReplacementLogic()
 	DynamicTerminal:Builder:Component current = None
 	while (iCounter < Components.Length)
 		current = getComponent(iCounter)
-		replace(current.getToken(), current.getValue())
+		if (current.isAvailable())
+			replace(current.getToken(), current.getValue())
+		else
+			replace(current.getToken(), ComponentNA)
+		endif
+		
 		iCounter += 1
 	endwhile
 EndFunction
